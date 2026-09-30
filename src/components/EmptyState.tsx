@@ -1,0 +1,2 @@
+import { Text, View } from "react-native";
+export function EmptyState({ title, description }: { title: string; description?: string }) { return <View className="items-center gap-2 rounded-2xl bg-white p-8 dark:bg-slate-900"><Text className="text-lg font-semibold text-slate-900 dark:text-white">{title}</Text>{description ? <Text className="text-center text-slate-500 dark:text-slate-400">{description}</Text> : null}</View>; }

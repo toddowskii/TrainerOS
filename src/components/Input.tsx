@@ -1,0 +1,3 @@
+import { Text, TextInput, View } from "react-native";
+type Props = { label: string; value?: string; onChangeText?: (value: string) => void; placeholder?: string };
+export function Input({ label, value, onChangeText, placeholder }: Props) { return <View className="gap-2"><Text className="font-medium text-slate-700 dark:text-slate-200">{label}</Text><TextInput accessibilityLabel={label} className="min-h-[44px] rounded-xl border border-slate-300 bg-white px-4 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white" value={value} onChangeText={onChangeText} placeholder={placeholder} /></View>; }
