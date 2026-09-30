@@ -1,10 +1,11 @@
 import type { Client, Payment, Session, Trainer } from "../types";
 import type { BookingRepo, ClientsRepo, PaymentsRepo, SessionsRepo, TrainerRepo } from "./repositories";
 
+const FAILURE_RATE = 0;
 const delay = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 const request = async <T>(value: T): Promise<T> => {
   await delay(300 + Math.floor(Math.random() * 301));
-  if (Math.random() < 0.05) {
+  if (Math.random() < FAILURE_RATE) {
     throw new Error("Mock repository request failed");
   }
   return value;
