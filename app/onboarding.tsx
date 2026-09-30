@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
 import * as Clipboard from "expo-clipboard";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
@@ -17,6 +18,7 @@ import { generateUniqueBookingSlug, priceToGrosz } from "../src/features/onboard
 
 export default function Onboarding() {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const [step, setStep] = useState(0);
   const [status, setStatus] = useState<"loading" | "ready" | "error" | "success">("loading");
   const [error, setError] = useState("");
@@ -48,7 +50,9 @@ export default function Onboarding() {
       const values = form.getValues();
       const slug = generateUniqueBookingSlug(values.fullName);
       if (!trainerRepo.updateProfile) throw new Error("Trainer profile updates are unavailable");
-      await trainerRepo.updateProfile({ fullName: values.fullName, instagramHandle: values.instagramHandle, bookingSlug: slug, sessionPriceGrosz: priceToGrosz(values.sessionPrice), defaultDurationMin: values.defaultDuration, weeklyAvailability: values.availability });
+      const updatedTrainer = await trainerRepo.updateProfile({ fullName: values.fullName, instagramHandle: values.instagramHandle, bookingSlug: slug, sessionPriceGrosz: priceToGrosz(values.sessionPrice), defaultDurationMin: values.defaultDuration, weeklyAvailability: values.availability });
+      queryClient.setQueryData(["trainer"], updatedTrainer);
+      await queryClient.invalidateQueries({ queryKey: ["trainer"] });
       setBookingLink(`https://traineros.example/${slug}`);
       setStatus("success");
     } catch {
