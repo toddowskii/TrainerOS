@@ -9,7 +9,7 @@ export type WeeklyAvailability = { day: number; startTime: string; endTime: stri
 export type ClientStatus = "active" | "inactive" | "churned";
 export type Client = {
   id: string; trainerId: string; fullName: string; email: string; phone?: string;
-  status: ClientStatus; lastSessionAt: string | null; intakeSurveyUrl?: string; consentAt: string;
+  status: ClientStatus; lastSessionAt: string | null; intakeSurveyUrl?: string; consentAt: string; createdAt?: string; reminderCount?: number;
 };
 export type SessionStatus = "scheduled" | "completed" | "cancelled" | "no_show";
 export type Session = {

@@ -5,6 +5,7 @@ const resources = {
   pl: { translation: {
     tabs: { dashboard: "Panel", clients: "Klienci", sessions: "Sesje", payments: "Płatności", share: "Udostępnij" },
     common: { placeholder: "Wkrótce", loading: "Ładowanie…", tryAgain: "Spróbuj ponownie", back: "Wstecz", next: "Dalej", finish: "Zakończ", minutes: "min" },
+    dashboard: { greeting: "Cześć, {{name}}", sessionsMonth: "Sesje w tym miesiącu", collectedMonth: "Zebrano w tym miesiącu", outstanding: "Do zapłaty", nextSessions: "Dzisiaj / nadchodzące sesje", noSessions: "Brak sesji", attention: "Wymaga uwagi", nothingAttention: "Nic nie wymaga uwagi", unpaid: "Nieopłacone", inactive: "Nieaktywny", remind: "Przypomnij", unknownClient: "Nieznany klient", error: "Nie udało się wczytać panelu.", notFound: "Nie znaleziono", lastSession: "Ostatnia sesja", never: "Brak", status: { scheduled: "Zaplanowana", completed: "Zakończona", cancelled: "Anulowana", no_show: "Nieobecność" } },
     onboarding: {
       title: "Ustaw swój profil", step: "Krok {{current}} z {{total}}", progress: "Postęp konfiguracji",
       profileIntro: "Zacznijmy od podstaw. Te dane zobaczą Twoi klienci.",
@@ -22,6 +23,7 @@ const resources = {
   en: { translation: {
     tabs: { dashboard: "Dashboard", clients: "Clients", sessions: "Sessions", payments: "Payments", share: "Share" },
     common: { placeholder: "Coming soon", loading: "Loading…", tryAgain: "Try again", back: "Back", next: "Next", finish: "Finish", minutes: "min" },
+    dashboard: { greeting: "Hi, {{name}}", sessionsMonth: "Sessions this month", collectedMonth: "Collected this month", outstanding: "Outstanding", nextSessions: "Today / next sessions", noSessions: "No sessions yet", attention: "Needs attention", nothingAttention: "Nothing needs attention", unpaid: "Unpaid", inactive: "Inactive", remind: "Remind", unknownClient: "Unknown client", error: "Could not load the dashboard.", notFound: "Not found", lastSession: "Last session", never: "Never", status: { scheduled: "Scheduled", completed: "Completed", cancelled: "Cancelled", no_show: "No-show" } },
     onboarding: {
       title: "Set up your profile", step: "Step {{current}} of {{total}}", progress: "Setup progress",
       profileIntro: "Let's start with the basics. Your clients will see these details.",

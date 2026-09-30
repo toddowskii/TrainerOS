@@ -16,6 +16,7 @@ export const clients: Client[] = Array.from({ length: 8 }, (_, index) => ({
   email: `client${index + 1}@example.com`, phone: `+48 500 000 00${index + 1}`,
   status: index === 6 ? "churned" : index === 5 ? "inactive" : "active",
   lastSessionAt: index === 7 ? null : new Date(Date.now() - index * 3 * 86400000).toISOString(), consentAt: new Date().toISOString(),
+  createdAt: new Date(Date.now() - (index === 7 ? 30 : index) * 86400000).toISOString(),
 }));
 export const sessions: Session[] = Array.from({ length: 15 }, (_, index) => ({
   id: `session-${index + 1}`, trainerId: trainer.id, clientId: clients[index % clients.length].id,
@@ -28,7 +29,15 @@ export const payments: Payment[] = Array.from({ length: 10 }, (_, index) => ({
   dueDate: new Date(Date.now() + index * 86400000).toISOString(), reminderCount: index % 3,
 }));
 
-export const clientsRepo: ClientsRepo = { list: async () => request(clients) };
+export const clientsRepo: ClientsRepo = {
+  list: async () => request(clients),
+  updateReminder: async (clientId) => {
+    const client = clients.find((item) => item.id === clientId);
+    if (!client) throw new Error("Client not found");
+    client.reminderCount = (client.reminderCount || 0) + 1;
+    return request(client);
+  },
+};
 export const sessionsRepo: SessionsRepo = { list: async () => request(sessions) };
 export const paymentsRepo: PaymentsRepo = { list: async () => request(payments) };
 export const trainerRepo: TrainerRepo = {
