@@ -10,7 +10,7 @@ const request = async <T>(value: T): Promise<T> => {
   return value;
 };
 
-export const trainer: Trainer = { id: "trainer-1", fullName: "Anna Kowalska", email: "anna@example.com", instagramHandle: "@annatrains", bookingSlug: "anna-kowalska", plan: "pro" };
+export const trainer: Trainer = { id: "trainer-1", fullName: "Anna Kowalska", email: "anna@example.com", instagramHandle: "@annatrains", bookingSlug: "", plan: "pro" };
 export const clients: Client[] = Array.from({ length: 8 }, (_, index) => ({
   id: `client-${index + 1}`, trainerId: trainer.id, fullName: ["Jan Nowak", "Ola Wiśniewska", "Piotr Zieliński", "Maria Wójcik", "Tomasz Kamiński", "Kasia Lewandowska", "Marek Dąbrowski", "Ewa Kozłowska"][index],
   email: `client${index + 1}@example.com`, phone: `+48 500 000 00${index + 1}`,
@@ -31,5 +31,11 @@ export const payments: Payment[] = Array.from({ length: 10 }, (_, index) => ({
 export const clientsRepo: ClientsRepo = { list: async () => request(clients) };
 export const sessionsRepo: SessionsRepo = { list: async () => request(sessions) };
 export const paymentsRepo: PaymentsRepo = { list: async () => request(payments) };
-export const trainerRepo: TrainerRepo = { get: async () => request(trainer) };
+export const trainerRepo: TrainerRepo = {
+  get: async () => request(trainer),
+  updateProfile: async (update) => {
+    Object.assign(trainer, update);
+    return request(trainer);
+  },
+};
 export const bookingRepo: BookingRepo = { getBookingUrl: async () => request(`https://traineros.example/${trainer.bookingSlug}`) };

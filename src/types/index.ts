@@ -1,7 +1,11 @@
 export type Trainer = {
   id: string; fullName: string; email: string; instagramHandle: string;
   bookingSlug: string; plan: string; stripeAccountId?: string;
+  sessionPriceGrosz?: number;
+  defaultDurationMin?: 30 | 45 | 60 | 90;
+  weeklyAvailability?: WeeklyAvailability[];
 };
+export type WeeklyAvailability = { day: number; startTime: string; endTime: string };
 export type ClientStatus = "active" | "inactive" | "churned";
 export type Client = {
   id: string; trainerId: string; fullName: string; email: string; phone?: string;

@@ -12,6 +12,7 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <Tabs screenOptions={{ headerShown: false, tabBarActiveTintColor: "#0d9f77" }}>
+        <Tabs.Screen name="onboarding" options={{ href: null }} />
         <Tabs.Screen name="index" options={{ title: t("tabs.dashboard") }} />
         <Tabs.Screen name="clients" options={{ title: t("tabs.clients") }} />
         <Tabs.Screen name="sessions" options={{ title: t("tabs.sessions") }} />
